@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Velas Aromáticas Artesanales</title>
+    <meta name="description" content="Velas aromáticas de cera de soja vertidas a mano. Diseños minimalistas y esencias naturales para iluminar tu espacio y calmar tu mente.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="#" class="logo">A U R A</a>
+            <nav class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#filosofia">Filosofía</a>
+                <a href="#catalogo">Catálogo</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <div class="header-actions">
+                <button class="cart-toggle-btn" id="cart-toggle" aria-label="Abrir carrito">
+                    <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 8.25h12.974c.59 0 1.08.457 1.119 1.057z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Drawer (Slide-over panel) -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-overlay" id="cart-overlay"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Tu Bolsa</h2>
+                <button class="cart-close-btn" id="cart-close" aria-label="Cerrar carrito">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="cart-items" id="cart-items-container">
+                <!-- Items will be injected here by JS -->
+                <div class="cart-empty-state">
+                    <p>Tu bolsa está vacía.</p>
+                    <a href="#catalogo" class="btn btn-primary close-cart-link">Explorar velas</a>
+                </div>
+            </div>
+
+            <div class="cart-footer">
+                <div class="cart-totals">
+                    <div class="cart-total-row">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">$0.00 MXN</span>
+                    </div>
+                    <div class="cart-total-row shipping-row">
+                        <span>Envío</span>
+                        <span>Calculado al coordinar</span>
+                    </div>
+                    <div class="cart-total-row total-row">
+                        <span>Total</span>
+                        <span id="cart-total">$0.00 MXN</span>
+                    </div>
+                </div>
+                <button class="checkout-btn" id="checkout-whatsapp">
+                    <span>Confirmar Pedido por WhatsApp</span>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.33 4.982L2 22l5.202-1.364a9.92 9.92 0 004.81 1.236h.005c5.507 0 9.99-4.478 9.99-9.984 0-2.667-1.037-5.176-2.924-7.062A9.921 9.921 0 0012.012 2zm5.799 14.144c-.253.712-1.464 1.306-2.01 1.363-.497.052-1.144.078-1.83-.146-2.883-.943-4.733-3.864-4.877-4.054-.143-.19-1.162-1.545-1.162-2.946 0-1.401.733-2.09.993-2.362.26-.272.57-.34.76-.34.19 0 .38.002.545.01.173.008.406-.065.635.49.233.565.795 1.942.863 2.08.067.138.113.298.022.48-.09.183-.135.298-.27.458-.135.16-.285.358-.406.48-.135.137-.278.286-.12.56.158.272.7 1.15 1.5 1.864.802.714 1.474.935 1.764 1.07.29.136.458.114.63-.083.173-.198.752-.876.953-1.17.203-.296.406-.247.683-.145.278.101 1.762.83 2.063.981.301.15.503.223.578.35.075.129.075.748-.178 1.46z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Candle Showcase (SVG Candle — starts lit, extinguishes on scroll) -->
+    <div class="scroll-candle-viewport" id="scroll-candle-container">
+        <div class="candle-wrapper" id="animated-candle">
+            <svg class="candle-svg" viewBox="0 0 260 420" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Jar body gradient (premium frosted glass / ceramic) -->
+                    <linearGradient id="jar-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#D0C7B9"/>
+                        <stop offset="15%" stop-color="#E8E1D5"/>
+                        <stop offset="50%" stop-color="#FDFBF7"/>
+                        <stop offset="85%" stop-color="#E8E1D5"/>
+                        <stop offset="100%" stop-color="#C5BCAE"/>
+                    </linearGradient>
+
+                    <!-- Jar inner shadow for 3D depth -->
+                    <linearGradient id="jar-inner-shadow" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#000000" stop-opacity="0.1"/>
+                        <stop offset="15%" stop-color="#000000" stop-opacity="0.02"/>
+                        <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+                    </linearGradient>
+
+                    <!-- Glass reflection highlight -->
+                    <linearGradient id="glass-highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+                        <stop offset="20%" stop-color="#ffffff" stop-opacity="0.5"/>
+                        <stop offset="30%" stop-color="#ffffff" stop-opacity="0"/>
+                        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                    </linearGradient>
+
+                    <!-- Wax surface gradient (solid part) -->
+                    <linearGradient id="wax-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FDF8F0"/>
+                        <stop offset="40%" stop-color="#F2EBE0"/>
+                        <stop offset="100%" stop-color="#D8CCBB"/>
+                    </linearGradient>
+
+                    <!-- Wax pool (melted area around wick) -->
+                    <radialGradient id="wax-pool-grad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#FADFA5" stop-opacity="0.9"/>
+                        <stop offset="40%" stop-color="#F5E4C4" stop-opacity="0.5"/>
+                        <stop offset="100%" stop-color="#E8DFCF" stop-opacity="0"/>
+                    </radialGradient>
+
+                    <!-- Jar rim highlight (shiny lip) -->
+                    <linearGradient id="rim-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#A59789"/>
+                        <stop offset="20%" stop-color="#FDFBF7"/>
+                        <stop offset="80%" stop-color="#E8E1D5"/>
+                        <stop offset="100%" stop-color="#8A7D70"/>
+                    </linearGradient>
+
+                    <!-- Flame body gradient -->
+                    <linearGradient id="flame-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stop-color="#1a3a5c"/>
+                        <stop offset="18%" stop-color="#d84315"/>
+                        <stop offset="50%" stop-color="#f9a825"/>
+                        <stop offset="85%" stop-color="#ffecb3"/>
+                        <stop offset="100%" stop-color="#fffde7"/>
+                    </linearGradient>
+
+                    <!-- Inner flame (hot core) -->
+                    <linearGradient id="inner-flame-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stop-color="#fff8e1" stop-opacity="0"/>
+                        <stop offset="40%" stop-color="#fff8e1" stop-opacity="0.9"/>
+                        <stop offset="100%" stop-color="#ffffff"/>
+                    </linearGradient>
+
+                    <!-- Flame glow -->
+                    <radialGradient id="glow-grad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="rgba(255,170,50,0.5)"/>
+                        <stop offset="50%" stop-color="rgba(255,120,30,0.15)"/>
+                        <stop offset="100%" stop-color="rgba(255,100,20,0)"/>
+                    </radialGradient>
+
+                    <!-- Smoke gradient -->
+                    <linearGradient id="smoke-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stop-color="#9E9E9E" stop-opacity="0.4"/>
+                        <stop offset="100%" stop-color="#BDBDBD" stop-opacity="0"/>
+                    </linearGradient>
+
+                    <!-- Soft shadow -->
+                    <filter id="soft-shadow" x="-20%" y="-10%" width="140%" height="130%">
+                        <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="rgba(0,0,0,0.1)"/>
+                    </filter>
+
+                    <!-- Flame blur -->
+                    <filter id="flame-blur">
+                        <feGaussianBlur stdDeviation="2"/>
+                    </filter>
+
+                    <!-- Smoke blur -->
+                    <filter id="smoke-blur">
+                        <feGaussianBlur stdDeviation="4"/>
+                    </filter>
+                </defs>
+
+                <!-- === CANDLE JAR BODY (Ultra-realistic) === -->
+                <g filter="url(#soft-shadow)">
+                    <!-- Main jar base -->
+                    <path d="
+                        M45,175
+                        L42,340
+                        Q42,370 70,370
+                        L190,370
+                        Q218,370 218,340
+                        L215,175
+                        Z
+                    " fill="url(#jar-grad)" stroke="#BCAEA0" stroke-width="0.5"/>
+
+                    <!-- Jar inner shadow (top lip AO) -->
+                    <path d="
+                        M45,175
+                        L42,340
+                        Q42,370 70,370
+                        L190,370
+                        Q218,370 218,340
+                        L215,175
+                        Z
+                    " fill="url(#jar-inner-shadow)"/>
+
+                    <!-- Glass Reflection -->
+                    <path d="
+                        M45,175
+                        L42,340
+                        Q42,370 70,370
+                        L190,370
+                        Q218,370 218,340
+                        L215,175
+                        Z
+                    " fill="url(#glass-highlight)"/>
+
+                    <!-- Jar rim (top lip) -->
+                    <ellipse cx="130" cy="175" rx="88" ry="12" fill="url(#rim-grad)" stroke="#A59789" stroke-width="0.8"/>
+
+                    <!-- Wax surface -->
+                    <ellipse cx="130" cy="175" rx="81" ry="9" fill="url(#wax-grad)"/>
+
+                    <!-- Melted wax pool around wick -->
+                    <ellipse cx="130" cy="175" rx="35" ry="6" fill="url(#wax-pool-grad)"/>
+                </g>
+
+                <!-- === WICK === -->
+                <line x1="130" y1="168" x2="130" y2="140" stroke="#3D3225" stroke-width="2" stroke-linecap="round"/>
+
+                <!-- === SMOKE (hidden initially, shown when flame dies) === -->
+                <g class="smoke-group" opacity="0">
+                    <path class="smoke-trail smoke-1" d="
+                        M130,138
+                        C125,120 138,105 128,80
+                        C122,65 135,50 130,30
+                    " fill="none" stroke="url(#smoke-grad)" stroke-width="6" stroke-linecap="round" filter="url(#smoke-blur)"/>
+                    <path class="smoke-trail smoke-2" d="
+                        M130,138
+                        C136,118 122,100 134,78
+                        C140,62 126,45 132,25
+                    " fill="none" stroke="url(#smoke-grad)" stroke-width="4" stroke-linecap="round" filter="url(#smoke-blur)"/>
+                </g>
+
+                <!-- === FLAME GROUP === -->
+                <!-- Ambient Glow -->
+                <circle cx="130" cy="110" r="50" fill="url(#glow-grad)" class="flame-glow"/>
+
+                <!-- Outer Flame Shape -->
+                <path class="candle-flame" d="
+                    M130,140
+                    C120,125 112,108 117,88
+                    C120,76 130,55 130,40
+                    C130,55 140,76 143,88
+                    C148,108 140,125 130,140 Z
+                " fill="url(#flame-grad)" filter="url(#flame-blur)"/>
+
+                <!-- Inner bright core -->
+                <path class="flame-core" d="
+                    M130,140
+                    C126,132 122,122 125,112
+                    C127,106 130,96 130,88
+                    C130,96 133,106 135,112
+                    C138,122 134,132 130,140 Z
+                " fill="url(#inner-flame-grad)" filter="url(#flame-blur)"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <main class="main-sections">
+        
+        <!-- Hero Section -->
+        <section id="inicio" class="hero-section">
+            <div class="hero-text-container">
+                <h1 class="hero-title">Luz. Aroma. Calma.</h1>
+                <p class="hero-subtitle">Velas de soja aromáticas vertidas a mano para transformar tus espacios en templos de serenidad.</p>
+                <div class="hero-cta-container">
+                    <a href="#catalogo" class="btn btn-secondary">Explorar Colección</a>
+                    <a href="#filosofia" class="learn-more-link">Nuestra historia &rarr;</a>
+                </div>
+            </div>
+            <div class="scroll-prompt">
+                <span>Desliza para encender</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
+                    <path d="M19.5 8.25l-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="filosofia" class="philosophy-section">
+            <div class="section-container grid-2">
+                <div class="text-content">
+                    <span class="section-label">Nuestra Esencia</span>
+                    <h2 class="section-title">El arte del bienestar consciente</h2>
+                    <p class="section-paragraph">
+                        Creemos que el hogar debe ser un santuario. Cada una de nuestras velas es vertida artesanalmente en pequeños lotes, combinando cera de soja 100% natural, aceites esenciales premium y mechas de algodón o madera ecológicas.
+                    </p>
+                    <p class="section-paragraph highlight">
+                        Sin parabenos. Sin parafinas sintéticas. Solo aromas puros y una luz suave que te reconecta con el presente.
+                    </p>
+                </div>
+                <div class="spacer-for-candle">
+                    <!-- This space is reserved for the floating candle on desktop scrolling -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Catalog Section -->
+        <section id="catalogo" class="catalog-section">
+            <div class="section-container">
+                <div class="catalog-header">
+                    <span class="section-label">Colección Aromática</span>
+                    <h2 class="section-title">Elige tu atmósfera</h2>
+                    <p class="section-subtitle">Explora nuestras velas diseñadas para cada estado de ánimo.</p>
+                    
+                    <!-- Simple Minimal Filters -->
+                    <div class="catalog-filters">
+                        <button class="filter-btn active" data-filter="todos">Todas</button>
+                        <button class="filter-btn" data-filter="Relajante">Relajantes</button>
+                        <button class="filter-btn" data-filter="Cálido">Cálidas</button>
+                        <button class="filter-btn" data-filter="Herbal">Herbales</button>
+                        <button class="filter-btn" data-filter="Frutal">Frutales</button>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be dynamically generated by JS -->
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Cargando velas aromáticas...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom Orders / Encargos -->
+        <section id="encargos" class="custom-orders-section">
+            <div class="section-container">
+                <div class="custom-orders-box">
+                    <span class="section-label">Pedidos Especiales</span>
+                    <h2 class="section-title">Velas hechas a tu medida</h2>
+                    <p>
+                        ¿Tienes un evento especial, boda o deseas un aroma y envase específico para tu marca? Creamos diseños y aromas personalizados que capturan tus momentos.
+                    </p>
+                    <div class="custom-orders-cta">
+                        <a href="https://wa.me/521234567890?text=Hola!%20Me%20gustar%C3%ADa%20cotizar%20unas%20velas%20personalizadas%20para%20un%20evento." target="_blank" rel="noopener" class="btn btn-primary">
+                            Cotizar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / Contact Info -->
+        <footer id="contacto" class="site-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h3>A U R A</h3>
+                    <p class="brand-subtext">Luz. Aroma. Calma.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Navegación</h4>
+                    <a href="#inicio">Inicio</a>
+                    <a href="#filosofia">Filosofía</a>
+                    <a href="#catalogo">Catálogo</a>
+                    <a href="#encargos">Encargos</a>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contacto & Redes</h4>
+                    <p>Envíos locales y nacionales</p>
+                    <div class="social-links">
+                        <!-- Instagram -->
+                        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/>
+                            </svg>
+                        </a>
+                        <!-- Facebook -->
+                        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <!-- WhatsApp Direct -->
+                        <a href="https://wa.me/521234567890" target="_blank" rel="noopener" aria-label="WhatsApp">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 AURA. Creado con amor para Montserrat. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- GSAP for Smooth Scroll & Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Custom Application logic -->
+    <script src="app.js"></script>
+</body>
+</html>
