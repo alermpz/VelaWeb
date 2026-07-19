@@ -1,5 +1,4 @@
-/*
-   AURA - MAIN APPLICATION SCRIPT
+/* CERA & FUEGO - MAIN APPLICATION SCRIPT */
    Handles: Cart state, Google Sheets loading, GSAP ScrollTrigger animations, and WhatsApp Checkout.
 */
 
@@ -13,7 +12,7 @@ const GOOGLE_SHEET_CSV_URL = "";
 
 // --- STATE MANAGEMENT ---
 let products = [];
-let cart = JSON.parse(localStorage.getItem('aura_cart')) || [];
+let cart = JSON.parse(localStorage.getItem('cera_fuego_cart')) || [];
 
 // --- DOM ELEMENTS ---
 const cartToggle = document.getElementById('cart-toggle');
@@ -64,7 +63,7 @@ async function loadProducts() {
         products = [
             {
                 "id": 1,
-                "nombre": "Aura de Lavanda & Manzanilla",
+                "nombre": "Cera & Fuego Lavanda y Manzanilla",
                 "descripcion": "Relajante y floral, ideal para inducir paz.",
                 "precio": 280,
                 "categoria": "Relajante",
@@ -259,7 +258,7 @@ window.removeFromCart = function(productId) {
 };
 
 function saveCart() {
-    localStorage.setItem('aura_cart', JSON.stringify(cart));
+    localStorage.setItem('cera_fuego_cart', JSON.stringify(cart));
 }
 
 function updateCartUI() {
@@ -318,7 +317,7 @@ function updateCartUI() {
 function checkoutWhatsApp() {
     if (cart.length === 0) return;
 
-    let message = `✨ *NUEVO PEDIDO - AURA VELAS* ✨\n\n`;
+    let message = `✨ *NUEVO PEDIDO - CERA & FUEGO* ✨\n\n`;
     message += `Hola, me gustaría realizar un pedido de las siguientes velas aromáticas:\n\n`;
 
     cart.forEach((item, index) => {
