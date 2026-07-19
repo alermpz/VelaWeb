@@ -602,8 +602,7 @@ button {
 
 /* --- Layout Sections --- */
 .main-sections {
-    position: relative;
-    z-index: 100; /* Above the fixed candle viewport, allowing text selection & clicks */
+    /* Removed z-index: 100 so the fixed candle (z-index: 50) can interleave between background and text */
 }
 
 section {
@@ -1133,7 +1132,7 @@ section {
         width: 220px;
         height: 280px;
     }
-    .cart-content {
-        max-width: 100%;
+    .cart-drawer {
+        width: 100%;
     }
 }
