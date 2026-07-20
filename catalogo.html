@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | Cera &amp; Fuego</title>
+    <meta name="description" content="Explora nuestra colección completa de velas aromáticas artesanales.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        El costo de envío se paga dependiendo de la distancia de la entrega y al momento de la entrega 🛒
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">CERA &amp; FUEGO</a>
+            <nav class="nav-links">
+                <a href="index.html#inicio">Inicio</a>
+                <a href="index.html#filosofia">Filosofía</a>
+                <a href="catalogo.html" class="active">Catálogo</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <div class="header-actions">
+                <button class="cart-toggle-btn" id="cart-toggle" aria-label="Abrir carrito">
+                    <svg class="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 8.25h12.974c.59 0 1.08.457 1.119 1.057z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Drawer (Slide-over panel) -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-overlay" id="cart-overlay"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Tu Bolsa</h2>
+                <button class="cart-close-btn" id="cart-close" aria-label="Cerrar carrito">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="cart-items" id="cart-items-container">
+                <!-- Items will be injected here by JS -->
+                <div class="cart-empty-state">
+                    <p>Tu bolsa está vacía.</p>
+                    <a href="catalogo.html" class="btn btn-primary close-cart-link">Explorar velas</a>
+                </div>
+            </div>
+
+            <div class="cart-footer">
+                <div class="cart-totals">
+                    <div class="cart-total-row">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">$0.00 MXN</span>
+                    </div>
+                    <div class="cart-total-row shipping-row">
+                        <span>Envío</span>
+                        <span>Calculado al coordinar</span>
+                    </div>
+                    <div class="cart-total-row total-row">
+                        <span>Total</span>
+                        <span id="cart-total">$0.00 MXN</span>
+                    </div>
+                </div>
+                <button class="checkout-btn" id="checkout-whatsapp">
+                    <span>Confirmar Pedido por WhatsApp</span>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.33 4.982L2 22l5.202-1.364a9.92 9.92 0 004.81 1.236h.005c5.507 0 9.99-4.478 9.99-9.984 0-2.667-1.037-5.176-2.924-7.062A9.921 9.921 0 0012.012 2zm5.799 14.144c-.253.712-1.464 1.306-2.01 1.363-.497.052-1.144.078-1.83-.146-2.883-.943-4.733-3.864-4.877-4.054-.143-.19-1.162-1.545-1.162-2.946 0-1.401.733-2.09.993-2.362.26-.272.57-.34.76-.34.19 0 .38.002.545.01.173.008.406-.065.635.49.233.565.795 1.942.863 2.08.067.138.113.298.022.48-.09.183-.135.298-.27.458-.135.16-.285.358-.406.48-.135.137-.278.286-.12.56.158.272.7 1.15 1.5 1.864.802.714 1.474.935 1.764 1.07.29.136.458.114.63-.083.173-.198.752-.876.953-1.17.203-.296.406-.247.683-.145.278.101 1.762.83 2.063.981.301.15.503.223.578.35.075.129.075.748-.178 1.46z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <main class="main-sections" style="padding-top: 80px;">
+        <!-- Catalog Section -->
+        <section id="catalogo" class="catalog-section">
+            <div class="section-container">
+                <div class="catalog-header">
+                    <span class="section-label">Colección Aromática</span>
+                    <h2 class="section-title">Elige tu atmósfera</h2>
+                    <p class="section-subtitle">Explora nuestras velas diseñadas para cada estado de ánimo.</p>
+                    
+                    <!-- Simple Minimal Filters -->
+                    <div class="catalog-filters">
+                        <button class="filter-btn active" data-filter="todos">Todas</button>
+                        <button class="filter-btn" data-filter="Relajante">Relajantes</button>
+                        <button class="filter-btn" data-filter="Cálido">Cálidas</button>
+                        <button class="filter-btn" data-filter="Herbal">Herbales</button>
+                        <button class="filter-btn" data-filter="Frutal">Frutales</button>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be dynamically generated by JS -->
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Cargando velas aromáticas...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / Contact Info -->
+        <footer id="contacto" class="site-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h3>CERA &amp; FUEGO</h3>
+                    <p class="brand-subtext">Luz. Aroma. Calma.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Navegación</h4>
+                    <a href="index.html#inicio">Inicio</a>
+                    <a href="index.html#filosofia">Filosofía</a>
+                    <a href="catalogo.html">Catálogo</a>
+                    <a href="index.html#encargos">Encargos</a>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contacto & Redes</h4>
+                    <p>Envíos locales y nacionales</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/521234567890" target="_blank" rel="noopener" aria-label="WhatsApp">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cera &amp; Fuego. Creado con amor para Montserrat. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Custom Application logic -->
+    <script src="app.js"></script>
+    <!-- Floating WhatsApp Button -->
+    <div class="floating-whatsapp">
+        <div class="whatsapp-tooltip" id="wa-tooltip">
+            ¿Necesitas ayuda?
+        </div>
+        <a href="https://wa.me/521234567890" target="_blank" rel="noopener" class="whatsapp-icon-btn" aria-label="Chat on WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+                <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.33 4.982L2 22l5.202-1.364a9.92 9.92 0 004.81 1.236h.005c5.507 0 9.99-4.478 9.99-9.984 0-2.667-1.037-5.176-2.924-7.062A9.921 9.921 0 0012.012 2zm5.799 14.144c-.253.712-1.464 1.306-2.01 1.363-.497.052-1.144.078-1.83-.146-2.883-.943-4.733-3.864-4.877-4.054-.143-.19-1.162-1.545-1.162-2.946 0-1.401.733-2.09.993-2.362.26-.272.57-.34.76-.34.19 0 .38.002.545.01.173.008.406-.065.635.49.233.565.795 1.942.863 2.08.067.138.113.298.022.48-.09.183-.135.298-.27.458-.135.16-.285.358-.406.48-.135.137-.278.286-.12.56.158.272.7 1.15 1.5 1.864.802.714 1.474.935 1.764 1.07.29.136.458.114.63-.083.173-.198.752-.876.953-1.17.203-.296.406-.247.683-.145.278.101 1.762.83 2.063.981.301.15.503.223.578.35.075.129.075.748-.178 1.46z"/>
+            </svg>
+        </a>
+    </div>
+</body>
+</html>
