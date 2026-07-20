@@ -1,6 +1,7 @@
-/* CERA & FUEGO DESIGN SYSTEM & STYLESHEET */
-   Aesthetics: Apple Warm Minimalism
-   Primary Fonts: Playfair Display (Serif), Outfit (Sans-serif)
+/*
+   CERA & FUEGO DESIGN SYSTEM & STYLESHEET
+   Aesthetics: Apple Clean Minimalism
+   Primary Fonts: Apple System Fonts
 */
 
 /* --- Design Tokens --- */
@@ -72,9 +73,21 @@ button {
     transition: var(--transition-micro);
 }
 
+/* --- Announcement Bar --- */
+.announcement-bar {
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    z-index: 1001;
+    position: relative;
+}
+
 /* --- Header / Navigation --- */
 .site-header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
@@ -209,27 +222,27 @@ button {
 .btn-secondary {
     background-color: transparent;
     color: var(--text-primary);
-    border-color: var(--text-primary);
+    border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
-    background-color: var(--text-primary);
-    color: var(--bg-color);
+    border-color: var(--text-primary);
     transform: translateY(-2px);
 }
 
 .learn-more-link {
-    font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-primary);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 0;
+    border-bottom: 1px solid transparent;
 }
 
 .learn-more-link:hover {
     gap: 0.8rem;
+    border-bottom-color: var(--text-primary);
 }
 
 /* --- Cart Drawer (Drawer layout) --- */
@@ -747,8 +760,8 @@ section {
 
 /* --- Catalog Section Styling --- */
 .catalog-section {
-    background-color: #FAF8F5;
-    padding-top: 6rem;
+    background-color: var(--bg-color);
+    padding-top: 4rem;
 }
 
 .catalog-header {
@@ -847,7 +860,10 @@ section {
 }
 
 .product-card:hover .product-image {
-    transform: scale(1.06);
+    transform: scale(1.15);
+}
+.product-card.touch-zoom .product-image {
+    transform: scale(1.15);
 }
 
 .product-tag {
@@ -1136,3 +1152,67 @@ section {
         width: 100%;
     }
 }
+
+/* --- Floating WhatsApp Button --- */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 2000;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.whatsapp-tooltip {
+    background-color: #ffffff;
+    color: #1D1D1F;
+    padding: 0.6rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    transform-origin: bottom right;
+}
+
+.whatsapp-tooltip.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.whatsapp-icon-btn {
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    align-self: flex-end;
+}
+
+.whatsapp-icon-btn:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .floating-whatsapp {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+    .whatsapp-icon-btn {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.product-card:active .product-image { transform: scale(1.15); }
+

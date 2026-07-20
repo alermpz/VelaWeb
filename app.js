@@ -1,4 +1,5 @@
-/* CERA & FUEGO - MAIN APPLICATION SCRIPT */
+/*
+   CERA & FUEGO - MAIN APPLICATION SCRIPT
    Handles: Cart state, Google Sheets loading, GSAP ScrollTrigger animations, and WhatsApp Checkout.
 */
 
@@ -28,20 +29,21 @@ const productsGrid = document.getElementById('products-grid');
 
 // --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
-    initApp();
-});
-
-function initApp() {
-    // 1. Fetch products & Render Catalog
-    loadProducts();
-
-    // 2. Setup Cart Event Listeners
+    // 1. Initialize Cart UI
     setupCartListeners();
     updateCartUI();
+    
+    // 2. Load Google Sheets Products (Only if catalog grid exists)
+    if (productsGrid) {
+        loadProducts();
+    }
 
-    // 3. Initialize GSAP ScrollTrigger Animations
-    initScrollAnimations();
-}
+    // 3. Init GSAP Animations (Only if GSAP is loaded and we're on a page with the candle)
+    const candle = document.getElementById('animated-candle');
+    if (typeof gsap !== 'undefined' && candle) {
+        initScrollAnimations();
+    }
+});
 
 // --- PRODUCT LOADING (Sheets / Local Fallback) ---
 async function loadProducts() {
@@ -482,3 +484,18 @@ function lightFlame(flameGroup, smokeGroup) {
         stagger: 0.05
     });
 }
+
+// --- Floating WhatsApp Tooltip Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const tooltip = document.getElementById('wa-tooltip');
+    if (tooltip) {
+        // Show after 1 second
+        setTimeout(() => {
+            tooltip.classList.add('show');
+            // Hide after 5 seconds
+            setTimeout(() => {
+                tooltip.classList.remove('show');
+            }, 5000);
+        }, 1000);
+    }
+});
